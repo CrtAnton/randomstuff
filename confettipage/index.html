@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebration Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #confetti-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0.7;
+            border-radius: 50%;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        #message-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #message {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="confetti-container"></div>
+    <div id="message-container">
+        <div id="message">You did it! I am on the internet!</div>
+    </div>
+
+    <script>
+        const colors = ['#FF5733', '#33FF57', '#5733FF', '#FF33E9', '#33E9FF', '#E9FF33', '#FF5733', '#33FF57', '#5733FF', '#FF33E9', '#33E9FF', '#E9FF33'];
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.left = Math.random() * 100 + 'vw';
+
+            document.getElementById('confetti-container').appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+
+        setInterval(createConfetti, 50);
+    </script>
+</body>
+</html>
